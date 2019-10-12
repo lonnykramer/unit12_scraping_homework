@@ -1,0 +1,95 @@
+<!-- must be stored in a subfolder called templates to work with app.py!!! -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mission to Mars</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./static/style.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="jumbotron text-center">
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
+
+    <!-- Mars News -->
+    <div class="row" id="mars_news">
+      <div class="col-md-12">
+        <h3 class="static_title">Latest Mars News</h3>
+        <h4 class="heading"> {{mars.news_title}}</h4>
+        <small>{{mars.news_p}}</small>
+      </div>
+    </div>
+
+    <!-- Mars picture -->
+    <div class="row" id="mars_image">
+      <div class="col-md-8">
+        <h3 class="static_image">Featured Mars Image</h3>
+        <br>
+        <img src={{mars.featured_image_url}} class="featured_image" width="700">
+      </div>
+
+      <div class="col-md-4">
+        <div class="card" border: black 2px solid>
+          <div class="card body">
+            <h4 class="card title">Current Weather on Mars</h4>
+            <small>{{mars.weather_url}}</small>
+          </div>
+        </div>
+
+        <br>
+        <br>
+        <h4 class="static_facts">Mars Facts</h4>
+
+        {% include 'mars_facts_cleaned.html' ignore missing %}
+
+      </div>
+
+    </div>
+
+
+
+    <!-- Row 1 -->
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Mars Hemispheres</h1>
+      </div>
+    </div>
+
+
+    <!-- Row 2 -->
+    <div class="row">
+
+      
+
+        {% for hemi in mars.hemisphere_urls %}
+        <div class="col-md-6">
+          <img class="figure_hemis" src="{{hemi["img_url"]}}" alt="alt text" width="100%" height="100%">
+          
+          <figcaption class="figure_titles">{{hemi["title"]}} </figcaption>
+
+        </figure>
+      </div>
+        
+        {% endfor %}
+      
+      </div>
+
+      
+
+
+
+
+    </div>
+  </div>
+</body>
+
+</html>
